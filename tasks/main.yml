@@ -1,6 +1,7 @@
 ---
-# this reset playbook is meant for development, thus commented out by design
-# - include_tasks: reset.yml
+# DANGEROUS !!! this reset playbook is meant for development, thus commented out by design
+- include_tasks: reset.yml
+  when: remove_db_to_scratch
 
 # Do not skip, it is required
 - include_tasks: assert.yml

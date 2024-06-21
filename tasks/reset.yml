@@ -14,6 +14,7 @@
     - "rm -rf /var/log/mongo*"
     - "rm -rf {{ mongo_systemlog.path }}"
     - "rm -rf {{ mongo_storage.dbPath }}"
+    - "rm -rf /journal/mongo*"
     - "rm {{ mongo_security.keyFile | default(omit) }} | echo"
     - "rm -f /etc/systemd/system/disable-transparent-hugepage*"
     - userdel mongodb | echo

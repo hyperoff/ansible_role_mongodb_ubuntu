@@ -12,6 +12,15 @@ storage:
   dbPath: {{ mongo_storage.dbPath }}
   journal:
     enabled: true
+  engine: wiredTiger
+  wiredTiger:
+    engineConfig:
+      journalCompressor: snappy
+      directoryForIndexes: true
+    collectionConfig:
+      blockCompressor: snappy
+    indexConfig:
+      prefixCompression: true
 
 processManagement:
   timeZoneInfo: /usr/share/zoneinfo

@@ -50,9 +50,23 @@
   file:
     state: directory
     path: "{{ mongo_storage.dbPath }}"
-    mode: 0755
+    mode: '0755'
     owner: mongodb
     group: mongodb
+
+- name: install | journal folder
+  file:
+    state: directory
+    path: "/journal/mongo_journal"
+    mode: '0755'
+    owner: mongodb
+    group: mongodb
+
+- name: install | journal folder link
+  file:
+    state: link
+    src: "/journal/mongo_journal"
+    dest: "{{ mongo_storage.dbPath }}/journal"
 
 - name: install | remove default data folder when set differently
   file:

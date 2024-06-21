@@ -1,0 +1,12 @@
+127.0.0.1   {{ inventory_hostname }}
+127.0.1.1   {{ inventory_hostname }}
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+{% for host in play_hosts %}
+{% if hostvars[host]['node_addr'] is defined and hostvars[host]['dns_alias'] is defined %}
+{{ hostvars[host]['node_addr'] }}  {{ hostvars[host]['dns_alias'] }} {{ host }}
+{% elif hostvars[host]['node_addr'] is defined %}
+{{ hostvars[host]['node_addr'] }}  {{ host }}
+{% endif %}
+{% endfor %}
