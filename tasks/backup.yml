@@ -37,14 +37,14 @@
           minute: "{{ mongo_backup.minute }}"
           job: "for dbs in {{ mongo_backup.dbs | join(' ') }} ; do
             mongodump --out
-            {{ mongo_backup.path }}/mongo_backup_$(date '+%Y-%m-%d')
+            {{ mongo_backup.path }}/mongo_backup_$(date '+\\%Y-\\%m-\\%d')
             --db $dbs
             --port {{ mongo_net.port }}
             --authenticationDatabase admin
             --username '{{ mongo_backup.user }}'
             --password '{{ mongo_backup.pass }}'
             && ln -sf
-            {{ mongo_backup.path }}/mongo_backup_$(date '+%Y-%m-%d')
+            {{ mongo_backup.path }}/mongo_backup_$(date '+\\%Y-\\%m-\\%d')
             {{ mongo_backup.path }}/latest ; done"
 
   when: >-
